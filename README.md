@@ -14,7 +14,7 @@
     cd virtualify/
     poetry install
    ```
-3. Run the Aapplication
+3. Run the Application
    ```sh
-   poetry run python3 virtualify/app
+   poetry run python3 virtualify/__init__.py
    ```
