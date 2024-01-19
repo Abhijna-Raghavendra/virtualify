@@ -6,7 +6,6 @@ USER_ID = 'openai'
 APP_ID = 'chat-completion'
 MODEL_ID = 'gpt-4-turbo'
 MODEL_VERSION_ID = '182136408b4b4002a920fd500839f2c8'
-RAW_TEXT = 'I love your product very much'
 
 def gpt(prompt, PAT):
     channel = ClarifaiChannel.get_grpc_channel()
