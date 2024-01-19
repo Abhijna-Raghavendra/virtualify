@@ -1,3 +1,3 @@
-def textSpeech(user, description, genre):
+def textSpeech(text):
     # ojaswi code here
     return ''

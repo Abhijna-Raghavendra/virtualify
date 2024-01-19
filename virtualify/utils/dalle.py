@@ -1,3 +1,3 @@
-def dallE(user, description, genre):
+def dallE(prompt):
     # disha code here
     return ''

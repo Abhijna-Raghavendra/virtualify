@@ -7,7 +7,10 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-flask = "^3.0.0"
+flask = {extras = ["async"], version = "^3.0.1"}
+clarifai = "^10.0.1"
+python-dotenv = "^1.0.0"
+asyncio = "^3.4.3"
 
 
 [build-system]
