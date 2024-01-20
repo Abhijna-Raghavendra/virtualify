@@ -30,7 +30,7 @@ def story(genre):
     dalle_prompt = ''
     img = dallE(dalle_prompt)
     aud = textSpeech(text)
-    return text
+    return render_template('story.html',text=text)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,42 @@
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Virtualify - AI Storytelling</title>
+    <style>
+         html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white font-mono">
+    <header class="bg-gray-800 p-4">
+        <!-- Virtualify Logo -->
+        <div class="text-2xl font-bold">Virtualify</div>
+    </header>
+    <main class="container justify-center text-center my-2 px-8">
+        <div class="flex items-center justify-center">
+            <img src="https://vastphotos.com/files/uploads/themes/water-900.jpg" class="object-contain px-4 py-4">
+        </div>
+        {{ text }}
+    </main>
+    <footer class="bg-gray-800 p-2 text-center">
+        &copy; 2024 Virtualify AI. All rights reserved.
+    </footer>
+    <div id="particles-js" style="pointer-events: none;"></div>
+</body>
+
+</html>
+{% endblock %}
