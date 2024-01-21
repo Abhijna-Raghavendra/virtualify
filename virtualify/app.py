@@ -1,10 +1,11 @@
-from flask import Flask, request
+from flask import Flask, request , Response , send_file
 from utils.gpt import gpt
 from utils.prompt import generatePrompt
 from utils.dalle import dallE
 from utils.t2s import textSpeech
 from dotenv import load_dotenv
 import os
+import base64
 
 load_dotenv()
 
@@ -26,8 +27,17 @@ def story(genre):
     # make function to extract prompt from text [slice??]
     dalle_prompt = ''
     img = dallE(dalle_prompt)
-    aud = textSpeech(text)
-    return text
+    aud = textSpeech(text,PAT)
+    
+    # audio_filename = os.path.abspath("audio_file.wav")
+
+    # with open(audio_filename, "wb") as f:
+    #    f.write(aud)
+   
+    return "hello"
+   
+    
+# decoded_audio_data = base64.b64decode(aud)
 
 if __name__ == '__main__':
     app.run(debug=True)
