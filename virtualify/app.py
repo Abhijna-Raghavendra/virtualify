@@ -1,10 +1,11 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, Response
 from utils.gpt import gpt
 from utils.prompt import generatePrompt
 from utils.dalle import dallE
 from utils.t2s import textSpeech
 from dotenv import load_dotenv
 import os
+import base64
 
 load_dotenv()
 
@@ -29,7 +30,7 @@ def story(genre):
     # make function to extract prompt from text [slice??]
     dalle_prompt = ''
     img = dallE(dalle_prompt)
-    aud = textSpeech(text)
+    aud = textSpeech(text,PAT)
     return render_template('story.html',text=text)
 
 if __name__ == '__main__':
