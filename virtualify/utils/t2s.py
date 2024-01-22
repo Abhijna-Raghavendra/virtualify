@@ -2,17 +2,12 @@ from clarifai_grpc.channel.clarifai_channel import ClarifaiChannel
 from clarifai_grpc.grpc.api import resources_pb2, service_pb2, service_pb2_grpc
 from clarifai_grpc.grpc.api.status import status_code_pb2
 
-# PAT = '129d15b92a414cf7b0cb6b70b86d976e'
-# Specify the correct user_id/app_id pairings
-# Since you're making inferences outside your app's scope
 USER_ID = 'openai'
 APP_ID = 'tts'
 # Change these to whatever model and text URL you want to use
 MODEL_ID = 'openai-tts-1-hd'
 MODEL_VERSION_ID = '3bf4a913cf0b48ee88c954bd151b2920'
 RAW_TEXT = 'I love your product very much'
-
-
 
 def textSpeech(text,PAT):
     channel = ClarifaiChannel.get_grpc_channel()

@@ -2,12 +2,10 @@ USER_ID = 'openai'
 APP_ID = 'dall-e'
 MODEL_ID = 'dall-e-3'
 MODEL_VERSION_ID = 'dc9dcb6ee67543cebc0b9a025861b868'
-
-
+     
 from clarifai_grpc.channel.clarifai_channel import ClarifaiChannel
 from clarifai_grpc.grpc.api import resources_pb2, service_pb2, service_pb2_grpc
 from clarifai_grpc.grpc.api.status import status_code_pb2
-
 
 def dallE(prompt,PAT):
      channel = ClarifaiChannel.get_grpc_channel()
@@ -38,11 +36,6 @@ def dallE(prompt,PAT):
         print(post_model_outputs_response.status)
         raise Exception("Post model outputs failed, status: " + post_model_outputs_response.status.description)
 
-    # Since we have one input, one output will exist here
      output = post_model_outputs_response.outputs[0].data.image.base64
-     image_filename = f"gen-image.jpg"
-     with open(image_filename, 'wb') as f:
-         f.write(output)
-         
-     return output    
     
+     return output    
