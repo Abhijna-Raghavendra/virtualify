@@ -5,11 +5,6 @@ from utils.dalle import dallE
 from utils.t2s import textSpeech
 from dotenv import load_dotenv
 import os
-import base64
-import io
-import base64
-from flask import send_from_directory
-
 
 load_dotenv()
 
@@ -29,12 +24,11 @@ def index():
 def story(genre):
     name = request.args.get("name")
     description = request.args.get("description")
-        
     gpt_prompt = generatePrompt(name,description,genre)
     
     text= gpt(gpt_prompt,PAT)
-    
     img = dallE(text+"in 1280X960", PAT)
+    img = dallE(text, PAT)
     img_path = os.path.join(os.getcwd(), "virtualify/static", "img.png")
     os.makedirs(os.path.dirname(img_path), exist_ok=True)
     with open(img_path, "wb") as f:
@@ -48,23 +42,28 @@ def story(genre):
         
     return render_template('story.html',text=text)
 
+@app.route('/process_text', methods=['POST'])
+def process_text():
+    # Retrieve user input from the form
+    user_text = request.form.get('user_text')
+    
+    # Process the user_text using your GPT model
+    # genre = "your_genre"  # Replace with the actual genre you want to use
+    # gpt_prompt = generatePrompt("name", "description", genre, user_text)
+    text = gpt(user_text, PAT)
 
-# @app.route('/static/<filename>')
-# def serve_image(filename):
-#     return send_from_directory('static', filename)
+    # Update the image and audio files based on the generated text
+    img = dallE(text + "in 1280X960", PAT)
+    img_path = os.path.join(os.getcwd(), "virtualify/static", "img.png")
+    with open(img_path, "wb") as f:
+        f.write(img)
 
- # make function to extract prompt from text [slice??]
-    # img = dallE(dalle_prompt,PAT)
-     # aud= textSpeech(text,PAT)
-     
-# @app.route('/image/<filename>')
-# def serve_image(filename):
-#     return send_file(filename, mimetype='image/jpg')
-# with open("output_image.png", "wb") as f:
-    #  f.write(img)
+    aud = textSpeech(text, PAT)
+    aud_path = os.path.join(os.getcwd(), "virtualify/static", "aud.wav")
+    with open(aud_path, 'wb') as f:
+        f.write(aud)
     # return "hello"
-
-
+    return render_template('story.html',text=text)
 
 if __name__ == '__main__':
     app.run(debug=True)
